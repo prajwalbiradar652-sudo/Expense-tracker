@@ -6,217 +6,621 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <link rel="stylesheet" href="style.css">
   <style>
-    /* Small self-contained overrides so you don't need to change style.css */
-    body { font-family: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:#fafafa; color:#111; }
-    .container{ max-width:980px; margin:22px auto; padding:18px; }
-    .card{ background:white; padding:14px; border-radius:10px; box-shadow: 0 6px 16px rgba(0,0,0,0.06); margin-bottom:12px; }
-    .link{ color:#444; text-decoration:none; cursor:pointer; margin-right:8px; }
-    .section-title{ margin-top:14px; margin-bottom:8px; color:#333; font-size:1.05rem; }
-    .small{ color:#666; font-size:0.9rem; }
+    /* Modern Mobile-First Design */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
 
-    /* Light yellow button style applied to all buttons and .link-like actions */
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #2d3436;
+      min-height: 100vh;
+      padding-bottom: 20px;
+    }
+
+    .container {
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 16px;
+      width: 100%;
+    }
+
+    /* Header Section */
+    .header {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      padding: 24px 16px;
+      border-radius: 16px;
+      margin-bottom: 24px;
+      box-shadow: 0 8px 24px rgba(102, 126, 234, 0.3);
+    }
+
+    .header h2 {
+      font-size: 28px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .header-subtitle {
+      font-size: 14px;
+      opacity: 0.9;
+    }
+
+    /* Card Styling */
+    .card {
+      background: white;
+      padding: 18px;
+      border-radius: 14px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      margin-bottom: 16px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .card:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+
+    /* Button Styling - Premium Gradient */
     button, .link, .app-btn, .secondary, #applyCustomBtn {
-      background: #46d1de; /* light yellow */
-      border: 1px solid rgba(0,0,0,0.06);
-      padding:8px 12px;
-      border-radius:8px;
-      cursor:pointer;
-      font-weight:600;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      font-size: 14px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+      text-decoration: none;
+      display: inline-block;
+      text-align: center;
     }
-    button:hover, .link:hover { filter: brightness(0.98); }
 
-    /* Recommendation plans side-by-side */
+    button:active, .link:active {
+      transform: scale(0.98);
+      box-shadow: 0 2px 6px rgba(102, 126, 234, 0.2);
+    }
+
+    button:hover, .link:hover {
+      background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+      box-shadow: 0 6px 16px rgba(102, 126, 234, 0.4);
+    }
+
+    .secondary {
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+    }
+
+    .secondary:hover {
+      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+      box-shadow: 0 6px 16px rgba(245, 87, 108, 0.4);
+    }
+
+    /* Top Actions */
+    .top-actions {
+      display: flex;
+      gap: 0;
+      flex-wrap: wrap;
+      margin-bottom: 20px;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    }
+
+    .top-actions .link {
+      flex: 1;
+      margin: 0;
+      border-radius: 0;
+      box-shadow: none;
+      background: white;
+      color: #667eea;
+      border-right: 1px solid #f0f0f0;
+      padding: 14px 12px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .top-actions .link:last-child {
+      border-right: none;
+    }
+
+    .top-actions .link:active {
+      background: #f8f9ff;
+    }
+
+    /* Salary Display Card */
+    .salary-card {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+
+    .salary-card .label {
+      font-size: 13px;
+      opacity: 0.9;
+      margin-bottom: 6px;
+    }
+
+    .salary-card .amount {
+      font-size: 32px;
+      font-weight: 700;
+    }
+
+    /* Section Titles */
+    .section-title {
+      margin-top: 20px;
+      margin-bottom: 12px;
+      color: #2d3436;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 0 0 8px 0;
+      border-bottom: 2px solid #667eea;
+      display: inline-block;
+    }
+
+    .small {
+      color: #636e72;
+      font-size: 13px;
+      line-height: 1.5;
+    }
+
+    /* Plans Layout */
     .plans {
-      display:flex;
-      gap:12px;
-      flex-wrap:wrap;
-      align-items:stretch;
-      margin-bottom:8px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      margin-bottom: 12px;
     }
+
+    @media (min-width: 600px) {
+      .plans {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
     .plan-card {
-      flex:1 1 260px; /* grow, shrink, basis */
-      min-width:220px;
+      position: relative;
+      overflow: hidden;
     }
 
-    /* Custom plan sliders styling (simple) */
-    input[type="range"]{ width:100%; margin-top:6px; }
+    .plan-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+    }
 
-    /* App boxes grid layout */
+    .plan-card .plan-name {
+      font-weight: 700;
+      font-size: 15px;
+      margin-bottom: 8px;
+      color: #2d3436;
+    }
+
+    .plan-card .plan-desc {
+      color: #636e72;
+      font-size: 12px;
+      margin-bottom: 12px;
+      line-height: 1.6;
+    }
+
+    .plan-card button {
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    /* Custom Plan Sliders */
+    .slider-container {
+      margin-bottom: 18px;
+    }
+
+    .slider-title {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: #2d3436;
+    }
+
+    .slider-value {
+      background: #667eea;
+      color: white;
+      padding: 2px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    input[type="range"] {
+      width: 100%;
+      height: 6px;
+      border-radius: 3px;
+      background: linear-gradient(to right, #667eea, #764ba2);
+      outline: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      border: 3px solid white;
+    }
+
+    input[type="range"]::-moz-range-thumb {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      cursor: pointer;
+      box-shadow: 0 2px 8px rgba(102, 126, 234, 0.4);
+      border: 3px solid white;
+    }
+
+    input[type="range"]:disabled {
+      opacity: 0.6;
+    }
+
+    /* Breakdown Output */
+    .breakdown-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .breakdown-item:last-child {
+      border-bottom: none;
+    }
+
+    .breakdown-label {
+      font-size: 13px;
+      color: #636e72;
+      font-weight: 600;
+    }
+
+    .breakdown-amount {
+      font-size: 18px;
+      font-weight: 700;
+      color: #667eea;
+    }
+
+    /* Apps Grid */
     .apps {
-      display:grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-      gap:12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 20px;
     }
-    .app-box{ display:flex; flex-direction:column; gap:8px; }
 
-    /* Inline salary editor modal-like box */
+    @media (min-width: 500px) {
+      .apps {
+        grid-template-columns: repeat(3, 1fr);
+      }
+    }
+
+    .app-box {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .app-title {
+      font-weight: 700;
+      font-size: 14px;
+      color: #2d3436;
+    }
+
+    .app-box .small {
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .app-btn {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 13px;
+      background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+      box-shadow: 0 4px 12px rgba(245, 87, 108, 0.3);
+    }
+
+    .app-btn:hover {
+      background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+    }
+
+    /* Salary Editor Modal */
     .salary-editor {
       position: fixed;
       left: 50%;
-      top: 40%;
+      top: 50%;
       transform: translate(-50%, -50%);
-      background: #fff;
-      padding: 14px;
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
       z-index: 9999;
-      width: 320px;
-      display: none; /* toggled via JS */
-    }
-    .salary-editor h4{ margin:0 0 8px 0; }
-    .overlay {
-      position: fixed;
-      inset:0;
-      background: rgba(0,0,0,0.35);
-      z-index: 9998;
+      width: 90%;
+      max-width: 340px;
       display: none;
     }
-    .top-actions { margin-bottom:12px; }
-    .small-input { width:100%; padding:8px; border-radius:6px; border:1px solid #ddd; font-size:1rem; margin-top:6px; }
+
+    .salary-editor h4 {
+      margin: 0 0 16px 0;
+      font-size: 18px;
+      font-weight: 700;
+      color: #2d3436;
+    }
+
+    .salary-editor label {
+      display: block;
+      margin-bottom: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #636e72;
+    }
+
+    .overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.4);
+      z-index: 9998;
+      display: none;
+      backdrop-filter: blur(2px);
+    }
+
+    .small-input {
+      width: 100%;
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 2px solid #e0e0e0;
+      font-size: 16px;
+      margin-bottom: 16px;
+      transition: all 0.3s ease;
+      color: #2d3436;
+    }
+
+    .small-input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px;
+      justify-content: flex-end;
+    }
+
+    .modal-actions button {
+      flex: 1;
+      padding: 12px 16px;
+      border: none;
+      border-radius: 10px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .modal-actions button:first-child {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+    }
+
+    .modal-actions button:last-child {
+      background: #f0f0f0;
+      color: #2d3436;
+    }
+
+    /* Responsive Design */
+    @media (max-width: 480px) {
+      .container {
+        padding: 12px;
+      }
+
+      .header {
+        padding: 20px 12px;
+        margin-bottom: 16px;
+        border-radius: 14px;
+      }
+
+      .header h2 {
+        font-size: 24px;
+      }
+
+      .card {
+        padding: 14px;
+      }
+
+      .apps {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    /* Utility Classes */
+    .flex-between {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .text-center {
+      text-align: center;
+    }
   </style>
 </head>
 <body>
 
 <script>
-  // unified auth check — uses same key as index.html
   const CURRENT_KEY = 'currentUser';
   if (!localStorage.getItem(CURRENT_KEY)) {
-    // Not signed in — redirect to the combined auth page (index.html)
     window.location.href = 'index.html';
   }
 </script>
 
 <div class="container">
-  <h2>Dashboard</h2>
-
-  <div class="top-actions" style="margin-bottom:12px">
-    <!-- Change Salary opens inline editor on same page -->
-    <a class="link" href="javascript:void(0)" onclick="openSalaryEditor()">Change Salary</a> |
-    <!-- Add Expense must go to add-expense.html -->
-    <a class="link" href="add-expense.html">Add Expense</a> |
-    <!-- Logout goes to index.html -->
-    <span class="link" onclick="logout()">Logout</span>
+  <!-- Header Section -->
+  <div class="header">
+    <h2>💰 Financial Dashboard</h2>
+    <div class="header-subtitle">Manage your money wisely</div>
   </div>
 
-  <!-- show saved salary -->
-  <div class="card">
-    <div style="display:flex;justify-content:space-between;align-items:center">
+  <!-- Top Actions -->
+  <div class="top-actions">
+    <a class="link" href="javascript:void(0)" onclick="openSalaryEditor()">✏️ Salary</a>
+    <a class="link" href="add-expense.html">➕ Expense</a>
+    <span class="link" onclick="logout()">🚪 Logout</span>
+  </div>
+
+  <!-- Salary Card -->
+  <div class="card salary-card">
+    <div class="flex-between">
       <div>
-        <div style="font-weight:700">Saved Salary</div>
-        <div id="salaryDisplay" class="small">—</div>
+        <div class="label">Monthly Salary</div>
+        <div id="salaryDisplay" class="amount">₹—</div>
       </div>
-      <div>
-        <!-- Edit Salary button now opens inline editor (same page) -->
-        <button onclick="openSalaryEditor()" class="secondary">Edit Salary</button>
-      </div>
+      <button class="secondary" onclick="openSalaryEditor()">Edit</button>
     </div>
   </div>
 
-  <!-- Recommendations presets (side by side) -->
-  <h3 class="section-title">Recommendation Plans</h3>
+  <!-- Recommendation Plans -->
+  <h3 class="section-title">📊 Recommendation Plans</h3>
 
   <div class="plans">
     <div class="card plan-card">
-      <div style="font-weight:700">Balanced Plan</div>
-      <div class="small" style="margin-top:6px">Invest 30% • Save 20% • Essentials 50%</div>
-      <div style="margin-top:8px">
-        <button onclick="applyPreset(30,20,50)">Use Balanced</button>
-      </div>
+      <div class="plan-name">⚖️ Balanced</div>
+      <div class="plan-desc">Invest 30% • Save 20% • Essentials 50%</div>
+      <button onclick="applyPreset(30,20,50)">Apply</button>
     </div>
 
     <div class="card plan-card">
-      <div style="font-weight:700">Conservative Plan</div>
-      <div class="small" style="margin-top:6px">Invest 15% • Save 35% • Essentials 50%</div>
-      <div style="margin-top:8px">
-        <button onclick="applyPreset(15,35,50)">Use Conservative</button>
-      </div>
+      <div class="plan-name">🛡️ Conservative</div>
+      <div class="plan-desc">Invest 15% • Save 35% • Essentials 50%</div>
+      <button onclick="applyPreset(15,35,50)">Apply</button>
     </div>
 
     <div class="card plan-card">
-      <div style="font-weight:700">Aggressive Plan</div>
-      <div class="small" style="margin-top:6px">Invest 45% • Save 10% • Essentials 45%</div>
-      <div style="margin-top:8px">
-        <button onclick="applyPreset(45,10,45)">Use Aggressive</button>
-      </div>
+      <div class="plan-name">🚀 Aggressive</div>
+      <div class="plan-desc">Invest 45% • Save 10% • Essentials 45%</div>
+      <button onclick="applyPreset(45,10,45)">Apply</button>
     </div>
   </div>
 
-  <!-- Custom Plan (two sliders + computed essentials) -->
-  <h3 class="section-title">Custom Plan</h3>
+  <!-- Custom Plan -->
+  <h3 class="section-title">🎚️ Custom Plan</h3>
 
-  <div class="card" id="customCard">
-    <div class="slider-title">Invest (%) — <span id="invPctDisplay">30%</span></div>
-    <input id="ci" type="range" min="0" max="100" value="30">
-
-    <div class="slider-title">Save (%) — <span id="savPctDisplay">20%</span></div>
-    <input id="cs" type="range" min="0" max="100" value="20">
-
-    <div class="slider-title">Essentials (%) — <span id="essPctDisplay">50%</span></div>
-    <input id="ce" type="range" min="0" max="100" value="50" disabled style="opacity:0.8;">
-
-    <div style="margin-top:10px">
-      <button id="applyCustomBtn">Apply Custom Plan</button>
-    </div>
-  </div>
-
-  <!-- Output -->
-  <h3 class="section-title">Your Breakdown</h3>
   <div class="card">
-    <div style="font-weight:700">Invest: <span id="o1">₹0</span></div>
-    <div style="font-weight:700;margin-top:6px">Save: <span id="o2">₹0</span></div>
-    <div style="font-weight:700;margin-top:6px">Essentials: <span id="o3">₹0</span></div>
+    <div class="slider-container">
+      <div class="slider-title">
+        <span>Invest Amount</span>
+        <span class="slider-value"><span id="invPctDisplay">30</span>%</span>
+      </div>
+      <input id="ci" type="range" min="0" max="100" value="30">
+    </div>
+
+    <div class="slider-container">
+      <div class="slider-title">
+        <span>Save Amount</span>
+        <span class="slider-value"><span id="savPctDisplay">20</span>%</span>
+      </div>
+      <input id="cs" type="range" min="0" max="100" value="20">
+    </div>
+
+    <div class="slider-container">
+      <div class="slider-title">
+        <span>Essentials</span>
+        <span class="slider-value"><span id="essPctDisplay">50</span>%</span>
+      </div>
+      <input id="ce" type="range" min="0" max="100" value="50" disabled>
+    </div>
+
+    <button id="applyCustomBtn" style="width: 100%; margin-top: 16px;">Apply Custom Plan</button>
+  </div>
+
+  <!-- Your Breakdown -->
+  <h3 class="section-title">📈 Your Breakdown</h3>
+  <div class="card">
+    <div class="breakdown-item">
+      <span class="breakdown-label">💼 Invest</span>
+      <span class="breakdown-amount" id="o1">₹0</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="breakdown-label">🏦 Save</span>
+      <span class="breakdown-amount" id="o2">₹0</span>
+    </div>
+    <div class="breakdown-item">
+      <span class="breakdown-label">🛒 Essentials</span>
+      <span class="breakdown-amount" id="o3">₹0</span>
+    </div>
   </div>
 
   <!-- Investing Apps -->
-  <h3 class="section-title">Investing Apps</h3>
+  <h3 class="section-title">📱 Investing Apps</h3>
 
   <div class="apps">
     <div class="card app-box">
-      <div class="app-title">Jar</div>
-      <div class="small">Gold savings & daily auto-savings.</div>
-      <button class="app-btn" onclick="openApp('https://jar.money')">Open Jar</button>
+      <div class="app-title">💎 Jar</div>
+      <div class="small">Gold savings & auto-savings.</div>
+      <button class="app-btn" onclick="openApp('https://jar.money')">Open</button>
     </div>
 
     <div class="card app-box">
-      <div class="app-title">Groww</div>
-      <div class="small">Mutual funds, SIPs, and stocks.</div>
-      <button class="app-btn" onclick="openApp('https://groww.in')">Open Groww</button>
+      <div class="app-title">📊 Groww</div>
+      <div class="small">Mutual funds & SIPs.</div>
+      <button class="app-btn" onclick="openApp('https://groww.in')">Open</button>
     </div>
 
     <div class="card app-box">
-      <div class="app-title">Zerodha</div>
-      <div class="small">Broker & Kite trading platform.</div>
-      <button class="app-btn" onclick="openApp('https://zerodha.com')">Open Zerodha</button>
+      <div class="app-title">📈 Zerodha</div>
+      <div class="small">Broker & trading.</div>
+      <button class="app-btn" onclick="openApp('https://zerodha.com')">Open</button>
     </div>
 
     <div class="card app-box">
-      <div class="app-title">Angel One</div>
-      <div class="small">Brokerage, mutual funds, and more.</div>
-      <button class="app-btn" onclick="openApp('https://angelone.in')">Open Angel One</button>
+      <div class="app-title">⭐ Angel One</div>
+      <div class="small">Brokerage & funds.</div>
+      <button class="app-btn" onclick="openApp('https://angelone.in')">Open</button>
     </div>
 
     <div class="card app-box">
-      <div class="app-title">Upstox</div>
-      <div class="small">Discount broker for stocks & derivatives.</div>
-      <button class="app-btn" onclick="openApp('https://upstox.com')">Open Upstox</button>
+      <div class="app-title">🎯 Upstox</div>
+      <div class="small">Discount broker.</div>
+      <button class="app-btn" onclick="openApp('https://upstox.com')">Open</button>
     </div>
 
     <div class="card app-box">
-      <div class="app-title">ET Money</div>
-      <div class="small">Mutual funds, insurance, goal SIPs.</div>
-      <button class="app-btn" onclick="openApp('https://etmoney.com')">Open ET Money</button>
+      <div class="app-title">💰 ET Money</div>
+      <div class="small">Funds & insurance.</div>
+      <button class="app-btn" onclick="openApp('https://etmoney.com')">Open</button>
     </div>
   </div>
 
 </div>
 
-<!-- Inline salary editor (same-page editing) -->
+<!-- Salary Editor Modal -->
 <div class="overlay" id="overlay" onclick="closeSalaryEditor()"></div>
 <div class="salary-editor" id="salaryEditor" role="dialog" aria-modal="true">
-  <h4>Edit Salary</h4>
-  <label class="small" for="salaryInput">Enter monthly salary (numbers only)</label>
-  <input id="salaryInput" class="small-input" type="number" min="0" placeholder="e.g. 25000">
-  <div style="display:flex;gap:8px;margin-top:10px;justify-content:flex-end">
+  <h4>Edit Monthly Salary</h4>
+  <label for="salaryInput">Enter your monthly salary</label>
+  <input id="salaryInput" class="small-input" type="number" min="0" placeholder="e.g. 25000" inputmode="numeric">
+  <div class="modal-actions">
     <button onclick="saveSalary()">Save</button>
     <button onclick="closeSalaryEditor()">Cancel</button>
   </div>
@@ -224,84 +628,83 @@
 
 <script>
 /* Utilities */
-function openApp(url){ window.open(url,'_blank'); }
+function openApp(url) {
+  window.open(url, '_blank');
+}
 
-/* LOGOUT: go to index.html and clear session data */
-function logout(){
+/* LOGOUT */
+function logout() {
   localStorage.removeItem('currentUser');
   localStorage.removeItem('salary');
-  // redirect to index.html as requested
   window.location.href = 'index.html';
 }
 
-/* Salary display helpers */
-function displaySalary(){
+/* Salary Display */
+function displaySalary() {
   const sd = document.getElementById('salaryDisplay');
   const s = Number(localStorage.getItem('salary')) || 0;
-  sd.innerText = s ? '₹' + s.toLocaleString() : 'Not set — use Change Salary';
+  sd.innerText = s ? '₹' + s.toLocaleString('en-IN') : '₹—';
 }
 
-/* OPEN/CLOSE inline salary editor (same page) */
+/* Modal Controls */
 const salaryEditor = document.getElementById('salaryEditor');
 const overlay = document.getElementById('overlay');
 const salaryInput = document.getElementById('salaryInput');
 
-function openSalaryEditor(){
-  // prefill input with current salary if present
+function openSalaryEditor() {
   const cur = Number(localStorage.getItem('salary')) || '';
   salaryInput.value = cur ? cur : '';
   overlay.style.display = 'block';
   salaryEditor.style.display = 'block';
-  salaryInput.focus();
+  setTimeout(() => salaryInput.focus(), 100);
 }
 
-function closeSalaryEditor(){
+function closeSalaryEditor() {
   overlay.style.display = 'none';
   salaryEditor.style.display = 'none';
   salaryInput.value = '';
 }
 
-/* Save salary from inline editor into localStorage and update page */
-function saveSalary(){
+/* Save Salary */
+function saveSalary() {
   const v = Number(salaryInput.value);
-  if (isNaN(v) || v < 0){
-    alert('Enter a valid salary (number >= 0)');
+  if (isNaN(v) || v < 0) {
+    alert('Please enter a valid salary amount');
     return;
   }
   localStorage.setItem('salary', String(Math.round(v)));
-  // update display and any live outputs
   displaySalary();
-  // if a plan is currently applied, recalc outputs using current slider values
   recalcBreakdownFromUI();
   closeSalaryEditor();
 }
 
-/* initial salary display */
 displaySalary();
 
-/* Preset apply (unchanged behavior) */
-function applyPreset(investPct, savePct, essPct){
+/* Apply Preset Plans */
+function applyPreset(investPct, savePct, essPct) {
   const salary = Number(localStorage.getItem('salary')) || 0;
-  if(!salary){ alert('Enter salary first (Change Salary)'); return; }
+  if (!salary) {
+    alert('Please set your salary first');
+    return;
+  }
 
   const investAmt = Math.round(salary * investPct / 100);
   const saveAmt = Math.round(salary * savePct / 100);
   const essAmt = Math.round(salary * essPct / 100);
 
-  document.getElementById('o1').innerText = '₹' + investAmt.toLocaleString();
-  document.getElementById('o2').innerText = '₹' + saveAmt.toLocaleString();
-  document.getElementById('o3').innerText = '₹' + essAmt.toLocaleString();
+  document.getElementById('o1').innerText = '₹' + investAmt.toLocaleString('en-IN');
+  document.getElementById('o2').innerText = '₹' + saveAmt.toLocaleString('en-IN');
+  document.getElementById('o3').innerText = '₹' + essAmt.toLocaleString('en-IN');
 
-  // Update sliders display to reflect used plan
   document.getElementById('ci').value = investPct;
   document.getElementById('cs').value = savePct;
   document.getElementById('ce').value = essPct;
-  document.getElementById('invPctDisplay').innerText = investPct + '%';
-  document.getElementById('savPctDisplay').innerText = savePct + '%';
-  document.getElementById('essPctDisplay').innerText = essPct + '%';
+  document.getElementById('invPctDisplay').innerText = investPct;
+  document.getElementById('savPctDisplay').innerText = savePct;
+  document.getElementById('essPctDisplay').innerText = essPct;
 }
 
-/* Custom plan logic (two sliders: invest & save) */
+/* Custom Plan Sliders */
 const ci = document.getElementById('ci');
 const cs = document.getElementById('cs');
 const ce = document.getElementById('ce');
@@ -310,30 +713,32 @@ const savPctDisplay = document.getElementById('savPctDisplay');
 const essPctDisplay = document.getElementById('essPctDisplay');
 const applyCustomBtn = document.getElementById('applyCustomBtn');
 
-function refreshCustomDisplays(){
+function refreshCustomDisplays() {
   const a = Number(ci.value);
   let b = Number(cs.value);
   let c = 100 - a - b;
-  if(c < 0){
-    // fit by reducing the other slider — prefer reducing save (cs) first
+  if (c < 0) {
     const newB = Math.max(0, 100 - a);
     cs.value = newB;
     b = newB;
     c = 100 - a - b;
   }
   ce.value = c;
-  invPctDisplay.innerText = a + '%';
-  savPctDisplay.innerText = b + '%';
-  essPctDisplay.innerText = c + '%';
+  invPctDisplay.innerText = a;
+  savPctDisplay.innerText = b;
+  essPctDisplay.innerText = c;
 }
-refreshCustomDisplays();
 
-ci.addEventListener('input', () => { refreshCustomDisplays(); });
-cs.addEventListener('input', () => { refreshCustomDisplays(); });
+refreshCustomDisplays();
+ci.addEventListener('input', refreshCustomDisplays);
+cs.addEventListener('input', refreshCustomDisplays);
 
 applyCustomBtn.addEventListener('click', () => {
   const salary = Number(localStorage.getItem('salary')) || 0;
-  if(!salary){ alert('Enter salary first (Change Salary)'); return; }
+  if (!salary) {
+    alert('Please set your salary first');
+    return;
+  }
   const investPct = Number(ci.value);
   const savePct = Number(cs.value);
   const essPct = Number(ce.value);
@@ -342,15 +747,15 @@ applyCustomBtn.addEventListener('click', () => {
   const saveAmt = Math.round(salary * savePct / 100);
   const essAmt = Math.round(salary * essPct / 100);
 
-  document.getElementById('o1').innerText = '₹' + investAmt.toLocaleString();
-  document.getElementById('o2').innerText = '₹' + saveAmt.toLocaleString();
-  document.getElementById('o3').innerText = '₹' + essAmt.toLocaleString();
+  document.getElementById('o1').innerText = '₹' + investAmt.toLocaleString('en-IN');
+  document.getElementById('o2').innerText = '₹' + saveAmt.toLocaleString('en-IN');
+  document.getElementById('o3').innerText = '₹' + essAmt.toLocaleString('en-IN');
 });
 
-/* Helper to recalc outputs according to current slider values (used after salary edit) */
-function recalcBreakdownFromUI(){
+/* Recalculate on Salary Change */
+function recalcBreakdownFromUI() {
   const salary = Number(localStorage.getItem('salary')) || 0;
-  if(!salary) return;
+  if (!salary) return;
   const investPct = Number(ci.value);
   const savePct = Number(cs.value);
   const essPct = Number(ce.value);
@@ -358,14 +763,21 @@ function recalcBreakdownFromUI(){
   const saveAmt = Math.round(salary * savePct / 100);
   const essAmt = Math.round(salary * essPct / 100);
 
-  document.getElementById('o1').innerText = '₹' + investAmt.toLocaleString();
-  document.getElementById('o2').innerText = '₹' + saveAmt.toLocaleString();
-  document.getElementById('o3').innerText = '₹' + essAmt.toLocaleString();
+  document.getElementById('o1').innerText = '₹' + investAmt.toLocaleString('en-IN');
+  document.getElementById('o2').innerText = '₹' + saveAmt.toLocaleString('en-IN');
+  document.getElementById('o3').innerText = '₹' + essAmt.toLocaleString('en-IN');
 }
 
-/* If there's an existing salary, recalc initial breakdown once */
 recalcBreakdownFromUI();
 
+/* Keyboard Support */
+salaryInput.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') saveSalary();
+});
+
+salaryInput.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeSalaryEditor();
+});
 </script>
 </body>
 </html>
